@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import './style.css';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import gsap from "gsap"
+
 
 const scene = new THREE.Scene();
 
@@ -22,7 +24,7 @@ const sizes = {
 const light = new THREE.PointLight(0xffffff, 200, 100);
 light.position.set(0, 10, 10);
 scene.add(light);
-
+ 
 //
 
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100);
@@ -85,3 +87,8 @@ const loop = () => {
 };
 
 loop(); // Start the animation loop
+
+//Timeline
+const tl = gsap.timeline({defaults: {duration: 1}})
+tl.fromTo(mesh.scale, {z:0, x:0, y:0}, {z:1, x:1, y:1})
+tl.fromTo("nav", {y:"-100%"}, { y:"0%"})
